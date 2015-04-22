@@ -15,12 +15,13 @@ include_recipe 'build-essential'
 execute 'apt-get update'
 package 'git'
 
-mysql_service 'default' do
+mysql_name = 'default'
+mysql_service mysql_name do
   version '5.5'
   port '3306'
   bind_address '0.0.0.0'
   initial_root_password node['db']['passwords']['root']
-  action :create
+  action [:create, :start]
 end
 
 mysql2_chef_gem 'default' do
@@ -32,7 +33,8 @@ node['db']['databases'].each do |db|
   connection_info = {
     host: 'localhost',
     username: 'root',
-    password: node['db']['passwords']['root']
+    password: node['db']['passwords']['root'],
+    socket: "/var/run/mysql-#{mysql_name}/mysqld.sock"
   }
 
   # create the user
