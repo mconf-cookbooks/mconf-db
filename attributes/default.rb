@@ -7,7 +7,6 @@
 #
 
 default['db']['passwords']['root'] = 'password'
-default['db']['passwords']['repl'] = 'password'
 
 default['db']['databases'] = []
 

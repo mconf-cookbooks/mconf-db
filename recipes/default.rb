@@ -15,24 +15,17 @@ include_recipe 'build-essential'
 execute 'apt-get update'
 package 'git'
 
-# Install MySQL Server
 mysql_service 'default' do
   version '5.5'
   port '3306'
   # bind_address '0.0.0.0'
-  server_root_password node['db']['passwords']['root']
-  server_repl_password node['db']['passwords']['repl']
+  initial_root_password node['db']['passwords']['root']
   action :create
 end
-# template '/etc/mysql/conf.d/mysite.cnf' do
-#   owner 'mysql'
-#   owner 'mysql'
-#   source 'mysite.cnf.erb'
-#   notifies :restart, 'mysql_service[default]'
-# end
 
-# Configure a user and a database for our app
-include_recipe 'database::mysql'
+mysql2_chef_gem 'default' do
+  action :install
+end
 
 node['db']['databases'] = [node['db']['databases']] unless node['db']['databases'].is_a?(Array)
 node['db']['databases'].each do |db|

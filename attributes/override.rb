@@ -6,4 +6,4 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 #
 
-override["build_essential"]["compiletime"] = false
+override['build_essential']['compiletime'] = false
