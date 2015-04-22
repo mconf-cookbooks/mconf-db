@@ -14,12 +14,14 @@ default['db']['databases'] = []
 default['db']['databases'].push(
   'name' => 'mconf_production',
   'user' => 'mconf',
-  'password' => 'password'
+  'password' => 'password',
+  'hosts' => ['%']
 )
 
 # Database for mconf-lb
 default['db']['databases'].push(
   'name' => 'mconf_lb_production',
   'user' => 'mconf',
-  'password' => 'password'
+  'password' => 'password',
+  'hosts' => ['%']
 )

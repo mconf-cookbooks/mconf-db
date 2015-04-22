@@ -18,7 +18,7 @@ package 'git'
 mysql_service 'default' do
   version '5.5'
   port '3306'
-  # bind_address '0.0.0.0'
+  bind_address '0.0.0.0'
   initial_root_password node['db']['passwords']['root']
   action :create
 end
@@ -54,5 +54,17 @@ node['db']['databases'].each do |db|
     database_name db['name']
     privileges [:all]
     action :grant
+  end
+
+  # give the user permission when on external hosts
+  if db['hosts'] && db['hosts'].length > 0
+    db['hosts'].each do |host_info|
+      mysql_database_user db['user'] do
+        connection connection_info
+        database_name db['name']
+        host host_info
+        action :grant
+      end
+    end
   end
 end
