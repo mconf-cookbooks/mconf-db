@@ -16,5 +16,6 @@ version          "0.0.1"
 depends          "mysql2_chef_gem", "~> 1.0"
 depends          "mysql", "~> 6.0"
 depends          "database", "~> 4.0"
+depends          "build-essential"
 
 recipe "mconf-db::default", "Sets up an instance of the database used by Mconf"

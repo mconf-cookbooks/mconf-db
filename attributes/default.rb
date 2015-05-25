@@ -6,12 +6,11 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 #
 
-default['db']['passwords']['root'] = 'password'
-
-default['db']['databases'] = []
+default['mconf-db']['passwords']['root'] = 'password'
+default['mconf-db']['databases'] = []
 
 # Database for mconf-web
-default['db']['databases'].push(
+default['mconf-db']['databases'].push(
   'name' => 'mconf_production',
   'user' => 'mconf',
   'password' => 'password',
@@ -19,7 +18,7 @@ default['db']['databases'].push(
 )
 
 # Database for mconf-lb
-default['db']['databases'].push(
+default['mconf-db']['databases'].push(
   'name' => 'mconf_lb_production',
   'user' => 'mconf',
   'password' => 'password',

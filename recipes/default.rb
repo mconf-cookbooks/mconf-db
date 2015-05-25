@@ -20,7 +20,7 @@ mysql_service mysql_name do
   version '5.5'
   port '3306'
   bind_address '0.0.0.0'
-  initial_root_password node['db']['passwords']['root']
+  initial_root_password node['mconf-db']['passwords']['root']
   action [:create, :start]
 end
 
@@ -28,12 +28,12 @@ mysql2_chef_gem 'default' do
   action :install
 end
 
-node['db']['databases'] = [node['db']['databases']] unless node['db']['databases'].is_a?(Array)
-node['db']['databases'].each do |db|
+node.override['mconf-db']['databases'] = [node['mconf-db']['databases']] unless node['mconf-db']['databases'].is_a?(Array)
+node['mconf-db']['databases'].each do |db|
   connection_info = {
     host: 'localhost',
     username: 'root',
-    password: node['db']['passwords']['root'],
+    password: node['mconf-db']['passwords']['root'],
     socket: "/var/run/mysql-#{mysql_name}/mysqld.sock"
   }
 
