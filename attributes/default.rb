@@ -7,23 +7,20 @@
 #
 
 default['mconf-db']['passwords']['root'] = 'password'
-default['mconf-db']['databases'] = []
-
-# Database for mconf-web
-default['mconf-db']['databases'].push(
-  'name' => 'mconf_production',
-  'user' => 'mconf',
-  'password' => 'password',
-  'hosts' => ['%']
-)
-
-# Database for mconf-lb
-default['mconf-db']['databases'].push(
-  'name' => 'mconf_lb_production',
-  'user' => 'mconf',
-  'password' => 'password',
-  'hosts' => ['%']
-)
+default['mconf-db']['databases'] = [
+  {
+    'name' => 'mconf_production', # Database for mconf-web
+    'user' => 'mconf',
+    'password' => 'password',
+    'hosts' => ['%']
+  },
+  {
+    'name' => 'mconf_lb_production', # Database for mconf-lb
+    'user' => 'mconf',
+    'password' => 'password',
+    'hosts' => ['%']
+  }
+]
 
 
 # Redis
