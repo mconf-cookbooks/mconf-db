@@ -24,3 +24,17 @@ default['mconf-db']['databases'].push(
   'password' => 'password',
   'hosts' => ['%']
 )
+
+
+# Redis
+default['mconf-db']['redis']['install'] = true
+default['mconf-db']['redis']['databases'] = 16
+default['mconf-db']['redis']['instances'] = [
+  { "name" => "master",
+    "port" => 6379
+  }
+]
+
+# On linux you can get a good password with `pwgen -sy 64 1`
+# (just make sure you remove any quotes or double quotes from it)
+# default['mconf-db']['redis']['instances'][0]['requirepass'] = 'use-a-long-password-hard-to-brute-force'

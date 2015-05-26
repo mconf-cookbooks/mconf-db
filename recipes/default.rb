@@ -70,3 +70,13 @@ node['mconf-db']['databases'].each do |db|
     end
   end
 end
+
+if node['mconf-db']['redis']['install']
+  include_recipe 'redisio'
+  include_recipe 'redisio::enable'
+
+  # TODO: test if this makes us lose data or not
+  service 'redismaster' do
+    action :restart
+  end
+end

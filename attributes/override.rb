@@ -6,4 +6,12 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 #
 
-override['build_essential']['compiletime'] = false
+override['build-essential']['compile_time'] = false
+
+settings = {}
+if node['mconf-db']['redis']['databases']
+  settings['databases'] = node['mconf-db']['redis']['databases']
+end
+override['redisio']['default_settings'] = settings
+
+override['redisio']['servers'] = node['mconf-db']['redis']['instances']
