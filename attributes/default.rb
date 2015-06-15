@@ -25,10 +25,12 @@ default['mconf-db']['databases'] = [
 
 # Redis
 default['mconf-db']['redis']['install'] = true
+default['mconf-db']['redis']['logfile'] = "/var/log/redis.log"
 default['mconf-db']['redis']['databases'] = 16
 default['mconf-db']['redis']['instances'] = [
   { "name" => "master",
-    "port" => 6379
+    "port" => 6379,
+    "logfile" => "/var/log/redismaster.log"
   }
 ]
 

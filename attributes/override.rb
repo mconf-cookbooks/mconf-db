@@ -9,9 +9,8 @@
 override['build-essential']['compile_time'] = false
 
 settings = {}
-if node['mconf-db']['redis']['databases']
-  settings['databases'] = node['mconf-db']['redis']['databases']
-end
+settings['databases'] = node['mconf-db']['redis']['databases'] if node['mconf-db']['redis']['databases']
+settings['logfile'] = node['mconf-db']['redis']['logfile'] if node['mconf-db']['redis']['logfile']
 override['redisio']['default_settings'] = settings
 
 override['redisio']['servers'] = node['mconf-db']['redis']['instances']
