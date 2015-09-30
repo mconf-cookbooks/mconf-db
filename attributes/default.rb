@@ -9,16 +9,18 @@
 default['mconf-db']['passwords']['root'] = 'password'
 default['mconf-db']['databases'] = [
   {
-    'name' => 'mconf_production', # Database for mconf-web
+    'name' => 'mconf_production', # First database
     'user' => 'mconf',
     'password' => 'password',
-    'hosts' => ['%']
+    'hosts' => ['%'],
+    'socket' => '/var/run/mysql-default/mysqld.sock'
   },
   {
-    'name' => 'mconf_lb_production', # Database for mconf-lb
+    'name' => 'mconf_test', # second database
     'user' => 'mconf',
     'password' => 'password',
-    'hosts' => ['%']
+    'hosts' => ['%'],
+    'socket' => '/var/run/mysql-default/mysqld.sock'
   }
 ]
 
