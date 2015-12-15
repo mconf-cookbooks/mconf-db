@@ -35,6 +35,9 @@ default['mconf-db']['redis']['instances'] = [
     "logfile" => "/var/log/redismaster.log"
   }
 ]
+# Set address(es) to bind to. Set 127.0.0.1 to protect from external access.
+# Defaults to nil, which will make redis bind to all available interfaces.
+# default['mconf-db']['redis']['address'] = "127.0.0.1"
 
 # On linux you can get a good password with `pwgen -sy 64 1`
 # (just make sure you remove any quotes or double quotes from it)
