@@ -21,6 +21,7 @@ mysql_service mysql_name do
   port '3306'
   bind_address '0.0.0.0'
   initial_root_password node['mconf-db']['passwords']['root']
+  provider Chef::Provider::MysqlService::Upstart
   action [:create, :start]
 end
 

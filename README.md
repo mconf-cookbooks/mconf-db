@@ -38,6 +38,10 @@ Installs the database server, including:
 Installs MySQL client only, usually installed alongside servers that need MySQL client,
 usually for testing/debugging purposes (accessing MySQL's console).
 
+#### remove
+
+Removes MySQL and redis, the opposite of what is done by the recipe `default`.
+
 
 Usage
 -----
@@ -106,6 +110,25 @@ Include `mconf-db::client` in your node's `run_list`, no more attributes needed:
   "run_list": [
     "recipe[mconf-web]",
     "recipe[mconf-db::client]"
+  ]
+}
+```
+
+#### mconf-db::remove
+
+Include `mconf-db::remove` in your node's `run_list`, no more attributes needed:
+
+```json
+{
+  "name":" my_node",
+  "mconf-web": {
+    "user": "mconf",
+    "app_group": "www-data",
+    "domain": "192.168.0.100"
+  },
+  "run_list": [
+    "recipe[mconf-web]",
+    "recipe[mconf-db::remove]"
   ]
 }
 ```
