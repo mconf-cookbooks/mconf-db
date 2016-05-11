@@ -7,22 +7,24 @@
 #
 
 default['mconf-db']['passwords']['root'] = 'password'
-default['mconf-db']['databases'] = [
-  {
-    'name' => 'mconf_production', # First database
-    'user' => 'mconf',
-    'password' => 'password',
-    'hosts' => ['%'],
-    'socket' => '/var/run/mysql-default/mysqld.sock'
-  },
-  {
-    'name' => 'mconf_test', # second database
-    'user' => 'mconf',
-    'password' => 'password',
-    'hosts' => ['%'],
-    'socket' => '/var/run/mysql-default/mysqld.sock'
-  }
-]
+default['mconf-db']['databases'] = []
+# Example:
+# default['mconf-db']['databases'] = [
+#   {
+#     'name' => 'mconf_production', # First database
+#     'user' => 'mconf',
+#     'password' => 'password',
+#     'hosts' => ['%'],
+#     'socket' => '/var/run/mysql-default/mysqld.sock'
+#   },
+#   {
+#     'name' => 'mconf_test', # second database
+#     'user' => 'mconf',
+#     'password' => 'password',
+#     'hosts' => ['%'],
+#     'socket' => '/var/run/mysql-default/mysqld.sock'
+#   }
+# ]
 
 
 # Redis
