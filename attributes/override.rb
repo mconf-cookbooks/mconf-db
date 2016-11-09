@@ -15,3 +15,7 @@ settings['address']   = node['mconf-db']['redis']['address'] if node['mconf-db']
 override['redisio']['default_settings'] = settings
 
 override['redisio']['servers'] = node['mconf-db']['redis']['instances']
+
+# rbenv + ruby
+# these attributes are used by the rbenv cookbook
+override['rbenv']['rubies'] = [node['mconf-db']['ruby']['version']]

@@ -10,9 +10,8 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 #
 
+include_recipe "apt"
 include_recipe 'build-essential'
-
-execute 'apt-get update'
 package 'git'
 
 mysql_name = 'default'
@@ -25,6 +24,13 @@ mysql_service mysql_name do
   action [:create, :start]
 end
 
+# install ruby because we need it for mysql2_chef_gem and mysql_database_user
+# installs globally but it's not added to the PATH automatically
+include_recipe "ruby_rbenv::system"
+include_recipe "ruby_build"
+rbenv_global node['mconf-db']['ruby']['version']
+
+# mysql_database_user needs this
 mysql2_chef_gem 'default' do
   action :install
 end
