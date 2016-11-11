@@ -26,9 +26,15 @@ end
 
 # install ruby because we need it for mysql2_chef_gem and mysql_database_user
 # installs globally but it's not added to the PATH automatically
-include_recipe "ruby_rbenv::system"
-include_recipe "ruby_build"
-rbenv_global node['mconf-db']['ruby']['version']
+if node['mconf-db']['ruby']['packages']
+  apt_repository 'ruby-ng' do
+    uri 'ppa:brightbox/ruby-ng'
+    components ['main']
+  end
+  node['mconf-db']['ruby']['packages'].each do |name|
+    package name
+  end
+end
 
 # mysql_database_user needs this
 mysql2_chef_gem 'default' do

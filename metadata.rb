@@ -19,8 +19,6 @@ depends 'mysql', '~> 6.0.21'
 depends 'database', '~> 4.0'
 depends 'build-essential', '>= 2.0'
 depends 'redisio', '~> 2.3'
-depends 'ruby_rbenv', '~> 1.1'
-depends 'ruby_build', '~> 1.0'
 depends 'apt', '>= 2.9'
 
 recipe 'mconf-db::default', 'Sets up an instance of the database used by Mconf'

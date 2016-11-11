@@ -45,5 +45,9 @@ default['mconf-db']['redis']['instances'] = [
 # (just make sure you remove any quotes or double quotes from it)
 # default['mconf-db']['redis']['instances'][0]['requirepass'] = 'use-a-long-password-hard-to-brute-force'
 
-# Ruby for mysql2_chef_gem
-default['mconf-db']['ruby']['version'] = '2.3.0'
+# Ruby (for mysql2_chef_gem). If the version is set to nil ruby will not be installed.
+default['mconf-db']['ruby']['version'] = "2.3"
+default['mconf-db']['ruby']['packages'] = [
+  "ruby#{node['mconf-db']['ruby']['version']}",
+  "ruby#{node['mconf-db']['ruby']['version']}-dev"
+]
