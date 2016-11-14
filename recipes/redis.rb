@@ -10,10 +10,10 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 #
 
-if node['mconf-db']['database']['install']
-  include_recipe "mconf-db::database"
-end
+include_recipe 'redisio'
+include_recipe 'redisio::enable'
 
-if node['mconf-db']['redis']['install']
-  include_recipe "mconf-db::redis"
+# TODO: test if this makes us lose data or not
+service 'redismaster' do
+  action :restart
 end

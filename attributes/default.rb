@@ -6,6 +6,7 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 #
 
+default['mconf-db']['database']['install'] = true
 default['mconf-db']['passwords']['root'] = 'password'
 default['mconf-db']['databases'] = []
 # Example:
