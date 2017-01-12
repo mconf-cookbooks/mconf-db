@@ -27,6 +27,12 @@ default['mconf-db']['databases'] = []
 #   }
 # ]
 
+# Use a newer version for Ubuntu >= 16.04
+if node['platform'] == 'ubuntu' && Gem::Version.new(node['platform_version']) < Gem::Version.new('16.04')
+  default['mconf-db']['mysql']['version'] = '5.5'
+else
+  default['mconf-db']['mysql']['version'] = '5.7'
+end
 
 # Redis
 default['mconf-db']['redis']['install'] = true
