@@ -14,22 +14,12 @@ include_recipe "apt"
 include_recipe 'build-essential'
 package 'git'
 
-# just so we can mantain Upstart as the default for Ubuntu < 16.04
-# otherwise just let the mysql cookbook decide
-# TODO: remove when we move to >= 16.04 completely
-provider = if node['platform'] == 'ubuntu' && Gem::Version.new(node['platform_version']) < Gem::Version.new('16.04')
-             Chef::Provider::MysqlServiceUpstart
-           else
-             nil # let the cookbook pick the provider
-           end
-
 mysql_name = 'default'
 mysql_service mysql_name do
   version node['mconf-db']['mysql']['version']
   port '3306'
   bind_address '0.0.0.0'
   initial_root_password node['mconf-db']['passwords']['root']
-  provider provider
   mysqld_options node['mconf-db']['mysql']['mysqld_options']
   action [:create, :start]
 end
