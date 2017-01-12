@@ -33,6 +33,7 @@ if node['platform'] == 'ubuntu' && Gem::Version.new(node['platform_version']) < 
 else
   default['mconf-db']['mysql']['version'] = '5.7'
 end
+default['mconf-db']['mysql']['mysqld_options'] = {}
 
 # Redis
 default['mconf-db']['redis']['install'] = true

@@ -30,6 +30,7 @@ mysql_service mysql_name do
   bind_address '0.0.0.0'
   initial_root_password node['mconf-db']['passwords']['root']
   provider provider
+  mysqld_options node['mconf-db']['mysql']['mysqld_options']
   action [:create, :start]
 end
 
