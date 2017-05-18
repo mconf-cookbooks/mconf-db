@@ -18,7 +18,7 @@ depends 'mysql2_chef_gem', '~> 1.0'
 depends 'mysql', '~> 8.1'
 depends 'database', '~> 4.0'
 depends 'build-essential', '>= 2.0'
-depends 'redisio', '~> 2.3'
+depends 'redisio', '~> 2.6'
 depends 'apt', '>= 2.9'
 
 recipe 'mconf-db::default', 'Sets up an instance of the database used by Mconf'

@@ -14,6 +14,6 @@ include_recipe 'redisio'
 include_recipe 'redisio::enable'
 
 # TODO: test if this makes us lose data or not
-service 'redismaster' do
+service 'redis@master' do
   action :restart
 end
