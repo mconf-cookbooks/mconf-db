@@ -12,4 +12,18 @@
 
 mysql_client 'default' do
   action :create
+  only_if {
+    node['platform'] != 'ubuntu' ||
+      Gem::Version.new(node['platform_version']) < Gem::Version.new('20.04')
+  }
+end
+
+mysql_client 'default' do
+  action :create
+  version '8.0'
+  package_name ['mysql-client-8.0', 'libmysqlclient-dev']
+  only_if {
+    node['platform'] == 'ubuntu' &&
+      Gem::Version.new(node['platform_version']) >= Gem::Version.new('20.04')
+  }
 end
